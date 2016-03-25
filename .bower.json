@@ -22,11 +22,11 @@
     "polymer": "Polymer/polymer",
     "iron-jsonp-library": "PolymerElements/iron-jsonp-library"
   },
-  "_release": "f74f7c7acd",
+  "_release": "ad56a370e6",
   "_resolution": {
     "type": "branch",
     "branch": "polymer1",
-    "commit": "f74f7c7acd62e274df13c9541573db818132326c"
+    "commit": "ad56a370e635e5bdcecd593d7d02ce2a6c8ab196"
   },
   "_source": "https://github.com/rbjarnason/polymer-instagram-feed.git",
   "_target": "polymer1",

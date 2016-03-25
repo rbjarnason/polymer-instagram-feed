@@ -1,95 +1,47 @@
-<link rel="import" href="../bower_components/iron-jsonp-library/iron-jsonp-library.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-jsonp-library/iron-jsonp-library.html">
+<script type="text/javascript" src="../../bower_components/instafeed.js/instafeed.min.js"></script>
 
 <dom-module id='polymer-instagram'>
   <template>
     <style is="custom-style">
     </style>
 
-     <iron-jsonp-library
-            library-url="https://api.instagram.com/v1/users/{{userId}}/media/recent?access_token={{accessToken}}&count={{count}}&callback="
-            id="ajax"
-            notify-event="api-load"
-            library-loaded="{{loaded}}"></iron-jsonp-library>
-
-    <ul class="instagram-feed">
-      <template is="dom-repeat" items="{{data}}" as="item">
-        <li class="item">
-          <a href="{{item.link}}">
-            <img src="{{item.imageSrc}}">
-          </a>
-        </li>
-      </template>
-   </ul>
+    <div id="instafeed"></div>
   </template>
 
   <script>
-    Polymer('polymer-instagram', {
+    Polymer({
 
       is: 'polymer-instagram',
 
       properties: {
 
-        items: {
-          type: Array,
-          value: []
-        },
-
-        count: {
-          type: Number,
-          value: 12
-        },
-
         accessToken: {
           type: String,
-          value: ""
+          value: null
         },
 
-        userId: {
+        clientId: {
           type: String,
-          value: ""
-        },
-
-        imageSize: {
-          type: String,
-          value: 'small'
-        },
-
-        imageSizeMap:  {
-          type: Object,
-          value: {
-            'small': 'thumbnail',
-            'medium': 'low_resolution',
-            'large': 'standard_resolution'
-          }
+          value: null,
+          observer: '_clientIdChanged'
         }
       },
 
-      buildModel: function (response, context) {
-        debugger;
-        var data = response.data,
-                itemsLength = data.length,
-                items = [],
-                imageSize,
-                i;
-
-        for (i=0; i<itemsLength; i++) {
-          imageSize = imageSizeMap[context.imageSize];
-
-          this.push('items',{
-            link: data[i].link,
-            imageSrc: data[i].images[imageSize].url
+      _clientIdChanged: function (newValue) {
+        if (newValue) {
+          debugger;
+          var feed = new Instafeed({
+            get: 'user',
+            userId: '3066250812',
+            clientId: this.clientId
           });
+          feed.run();
         }
-
-        return { items: items };
       },
 
       ready: function () {
-        debugger;
-        this.$.ajax.addEventListener('response', function (e) {
-          debugger;
-          this.items.model = this.buildModel(e.detail.response, this);
-        }.bind(this));
       }
     });
   </script>
