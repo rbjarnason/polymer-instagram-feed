@@ -1,8 +1,6 @@
 <link rel="import" href="../bower_components/iron-jsonp-library/iron-jsonp-library.html">
 
-<dom-module id='instagram-feed'>
-
-
+<dom-module id='polymer-instagram'>
   <template>
     <style is="custom-style">
     </style>
@@ -25,11 +23,17 @@
   </template>
 
   <script>
-    Polymer('instagram-feed', {
+    Polymer('polymer-instagram', {
 
-      is: 'instagram-feed',
+      is: 'polymer-instagram',
 
       properties: {
+
+        items: {
+          type: Array,
+          value: []
+        },
+
         count: {
           type: Number,
           value: 12
@@ -61,6 +65,7 @@
       },
 
       buildModel: function (response, context) {
+        debugger;
         var data = response.data,
                 itemsLength = data.length,
                 items = [],
@@ -70,19 +75,20 @@
         for (i=0; i<itemsLength; i++) {
           imageSize = imageSizeMap[context.imageSize];
 
-          items.push({
+          this.push('items',{
             link: data[i].link,
-            imageSrc: data[i].images[imageSize].url,
+            imageSrc: data[i].images[imageSize].url
           });
-      }
+        }
 
-      return { items: items };
-    },
+        return { items: items };
+      },
 
-    ready: function () {
+      ready: function () {
+        debugger;
         this.$.ajax.addEventListener('response', function (e) {
           debugger;
-          this.$.items.model = this.buildModel(e.detail.response, this);
+          this.items.model = this.buildModel(e.detail.response, this);
         }.bind(this));
       }
     });

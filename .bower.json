@@ -1,0 +1,34 @@
+{
+  "name": "instagram-feed",
+  "homepage": "https://github.com/rbjarnason/instagram-feed",
+  "authors": [
+    "Mike Ball <mikedball@gmail.com>",
+    "Robert Bjarnason <robert@citizens.is>"
+  ],
+  "description": "A custom Polymer element for displaying a user's Instagram feed",
+  "main": "src/instagram-feed.html",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "instagram"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer",
+    "iron-jsonp-library": "PolymerElements/iron-jsonp-library"
+  },
+  "_release": "f74f7c7acd",
+  "_resolution": {
+    "type": "branch",
+    "branch": "polymer1",
+    "commit": "f74f7c7acd62e274df13c9541573db818132326c"
+  },
+  "_source": "https://github.com/rbjarnason/polymer-instagram-feed.git",
+  "_target": "polymer1",
+  "_originalSource": "https://github.com/rbjarnason/polymer-instagram-feed.git"
+}
