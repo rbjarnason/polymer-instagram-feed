@@ -47,6 +47,13 @@
               resolution: 'standard_resolution',
               links: true
             });
+            this.async(function () {
+              var allImages = Polymer.dom(this.$$("#instafeed")).querySelectorAll("a img");
+              _.each(allImages, function (image) {
+                image.style.width = "100%";
+                image.style.marginBottom = "16px";
+              });
+            },1200);
             feed.run();
           }.bind(this), 50);
         }
